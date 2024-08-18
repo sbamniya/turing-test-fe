@@ -1,8 +1,11 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import Sidebar from "@/components/Sidebar";
+import type { Metadata } from "next";
+import { Nunito } from "next/font/google";
+import { headers } from "next/headers";
+
+const inter = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,9 +17,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const heads = headers();
+
+  const pathname = heads.get("x-current-path");
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="w-full flex">
+          <Sidebar pathname={pathname!} />
+          <main className="flex flex-1 min-h-screen px-[5px]">
+            <div className="bg-[#1B222B] w-full border border-[#283038] p-4">
+              {children}
+            </div>
+          </main>
+        </div>
+      </body>
     </html>
   );
 }

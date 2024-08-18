@@ -4,7 +4,7 @@ const POLICY_ID = "1";
 
 export default async function Snapshots() {
   const policy: Policy = await fetch(
-    `http://localhost:3333/snapshots/${POLICY_ID}`
+    `${process.env.API_URL}/snapshots/${POLICY_ID}`
   ).then((res) => res.json());
 
   return (

@@ -17,7 +17,7 @@ const IOPS = async () => {
     }[];
     read: number;
     write: number;
-  } = await fetch("http://localhost:3333/1/iops").then((res) => res.json());
+  } = await fetch(`${process.env.API_URL}/1/iops`).then((res) => res.json());
 
   return (
     <Widget

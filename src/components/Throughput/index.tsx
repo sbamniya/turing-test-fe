@@ -16,7 +16,7 @@ const Throughput = async () => {
     }[];
     read: number;
     write: number;
-  } = await fetch("http://localhost:3333/1/throughput").then((res) =>
+  } = await fetch(`${process.env.API_URL}/1/throughput`).then((res) =>
     res.json()
   );
 
